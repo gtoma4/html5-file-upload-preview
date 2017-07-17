@@ -1,2 +1,4 @@
-# html5-file-upload-preview
-exercise in HTML5 file input / drag/drop and showing preview of file
+html5-file-upload
+=================
+
+Exercise in HTML5 file input and preview stuff
