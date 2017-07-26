@@ -28,7 +28,7 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    // On unmount of our component, remove the event listeners 
+    // On unmount of our component, remove the event listeners
     window.removeEventListener("dragover",this.handleDragDropPreventDefault,false);
     window.removeEventListener("drop",this.handleDragDropPreventDefault,false);
   }
@@ -46,11 +46,15 @@ class App extends React.Component {
     myHeaders.append('jwt', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjEyMzQ1Njc4OTAiLCJpYXQiOjE0ODc5NjA5Nzl9.qO856Cwwlzs2zpDYSXthApAKo5VpVafc5DHDLSV9Hho');
     //console.log('HHHHHHHHH', myHeaders.getAll('jwt'));
 
-    if (input.files.length > 0) {
-      fetch('https://wsgateway.star2star.net/upload', { method: 'POST',  mode: 'cors', credentials: 'same-origin', headers: myHeaders, body: data })
-    // show preview of file
-    const reader = new FileReader();
+    console.log('input.files[0]', input.files[0]);
 
+
+    if (input.files.length > 0) {
+      // POST to server when server is ready....
+      //fetch('http://localhost:8000/upload', { method: 'POST',  mode: 'no-cors', credentials: 'same-origin', headers: myHeaders, body: data });
+
+    // show preview of selected file
+    const reader = new FileReader();
 
     // set up FileReader to update the image tag with the selected file
     reader.onload = function (e) {
@@ -68,17 +72,13 @@ class App extends React.Component {
   }
 
   handleFileDrop(data) {
-    console.log('DATA DROPPED', data.files);
+    console.log('DATA DROPPED', data);
 
 
     var input = document.querySelector('input[type="file"]');
 
     input.files=data.files;
   }
-
-
-
-
 
   render() {
 
@@ -92,7 +92,7 @@ class App extends React.Component {
         </div>
         <div style={{width:'400px', height: '200px',background: 'orange'}}>
           <input name="myFile" type="file" onChange={this.handleFileSelect} />
-          <img id="image" ref="image" style={{maxHeight: '140px', maxWidth:'140px'}}/>
+          <img id="image" ref="image" style={{maxHeight: '40px', maxWidth:'40px'}}/>
         </div>
       </div>
     );
